@@ -1,0 +1,57 @@
+/**
+* MIXINS -----------------------------------------------------------------------
+*/
+.clearfix {
+    &::after {
+        content: "";
+        clear: both;
+        display: block;
+    }
+}
+.calc(@prop; @val) {
+    @{prop}:    -moz-calc(~'@{val}');
+    @{prop}:      -o-calc(~'@{val}');
+    @{prop}: -webkit-calc(~'@{val}');
+    @{prop}:         calc(~'@{val}');
+}
+.columns(@count, @gap, @rule) {
+    -webkit-column-count: @count;
+       -moz-column-count: @count;
+            column-count: @count;
+
+    -webkit-column-gap: @gap;
+       -moz-column-gap: @gap;
+            column-gap: @gap;
+
+    -webkit-column-rule: @rule;
+       -moz-column-rule: @rule;
+            column-rule: @rule;
+}
+.origin(@x, @y) {
+    -webkit-transform-origin: @x @y;
+        -ms-transform-origin: @x @y;
+            transform-origin: @x @y;
+}
+.rotate(@val) {
+    -webkit-transform: rotate(@val);
+        -ms-transform: rotate(@val);
+            transform: rotate(@val);
+}
+.scale(@val) {
+    -webkit-transform: scale(@val);
+        -ms-transform: scale(@val);
+            transform: scale(@val);
+}
+.transition(@property: all; @duration: 200ms; @ease: linear) {
+    transition: @property @duration @ease;
+}
+.translateX(@val) {
+    -webkit-transform: translateX(@val);
+        -ms-transform: translateX(@val);
+            transform: translateX(@val);
+}
+.translateY(@val) {
+    -webkit-transform: translateY(@val);
+        -ms-transform: translateY(@val);
+            transform: translateY(@val);
+}
