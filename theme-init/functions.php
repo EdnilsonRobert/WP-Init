@@ -61,6 +61,12 @@
         }
         add_action('init', 'theme_menus');
 
+        // HABILITAR RESUMO PARA PÁGINAS
+        function excerpt_support_for_pages() {
+            add_post_type_support('page', 'excerpt');
+        }
+        add_action('init', 'excerpt_support_for_pages');
+
     }
     add_action('after_setup_theme', 'theme_setup');
 
@@ -76,6 +82,35 @@
 //        else :
 //            return false;
 //        endif;
+    }
+
+/**
+* BREADCRUMBS
+* ------------------------------------------------------------------------------
+*/
+    function the_breadcrumbs() {
+        global $post;
+        $base_url = get_bloginfo('url');
+        $bc  = '<ol class="breadcrumbs">';
+        $bc .= '<li><a title="Home" href="' . $base_url . '/">Home</a></li>';
+
+        if( is_page() && !is_subpage() ) :
+            $bc .= '<li><strong>' . get_the_title() . '</strong></li>';
+        elseif( is_page() && is_subpage() ) :
+            $parent_name = get_the_title( $post->post_parent );
+            $parent_link = get_page_link( $post->post_parent );
+            $bc .= '<li><a title="' . $parent_name . '" href="' . $parent_link . '">' . $parent_name . '</a></li>';
+            $bc .= '<li><strong>' . get_the_title() . '</strong></li>';
+        elseif( is_single() ) :
+            $bc .= '<li><strong>' . get_the_title() . '</strong></li>';
+        elseif( is_category() ) :
+            $bc .= '<li><strong>' . single_cat_title('', false) . '</strong></li>';
+        else :
+            $bc .= '<li>NULL</li>';
+        endif;
+
+        $bc .= '</ol><!-- .breadcrumbs -->';
+        printf('%s', $bc);
     }
 
 /**
