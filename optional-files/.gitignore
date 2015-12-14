@@ -1,3 +1,23 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Wordpress
 *.log
 .htaccess
 sitemap.xml
@@ -16,4 +36,8 @@ wp-content/plugins/hello.php
 /readme.html
 /license.txt
 
-/nbproject/private/
+# NetBeans
+nbproject/private/
+
+# PHP
+error_log
